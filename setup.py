@@ -1,5 +1,5 @@
 from pathlib import Path
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 description = ['Tools and baselines for visual localization and mapping']
 
@@ -14,7 +14,8 @@ with open(str(root / 'requirements.txt'), 'r') as f:
 setup(
     name='hloc',
     version=version,
-    packages=find_packages(),
+    packages=find_namespace_packages(include=["hloc*", "third_party.SuperGluePretrainedNetwork.models*"]),
+    package_data={"third_party.SuperGluePretrainedNetwork.models": ["weights/*.pth"]},
     python_requires='>=3.6',
     install_requires=dependencies,
     author='Paul-Edouard Sarlin',
